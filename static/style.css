@@ -1,0 +1,14 @@
+
+
+
+tr {
+    background-color: grey;
+}
+.hit {
+    background-color: green;
+    padding-bottom: 100px;
+}
+
+.miss {
+    background-color: red;
+}

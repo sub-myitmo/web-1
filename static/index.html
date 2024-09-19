@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Лаба1 хз что придумать</title>
+    <script src="jquery-3.7.1.min.js"></script>
+
+    <style>
+        body {
+            text-align: center;
+            margin: 0;
+        }
+
+        header {
+            padding: 30px 0;
+            font-family: sans-serif;
+            font-size: 1.2em;
+            color: aqua;
+            background: linear-gradient(orange, red);
+        }
+
+        header a {
+            text-decoration: none;
+        }
+        header a:hover {
+            text-decoration: underline;
+            scale: 1.2;
+        }
+
+
+        .table-check {
+            border: 1px solid #eee;
+            table-layout: fixed;
+            width: 100%;
+            margin-bottom: 20px;
+
+            opacity: 0.8;
+        }
+
+        .table-check th {
+            font-weight: bold;
+            padding: 5px;
+            background: #efefef;
+            border: 1px solid #dddddd;
+        }
+
+        .table-check td {
+            padding: 5px 10px;
+            border: 1px solid #eee;
+            text-align: center;
+        }
+
+        .hit {
+            background-color: green;
+            padding-bottom: 100px;
+        }
+
+        .miss {
+            background-color: red;
+        }
+
+        .main {
+            background-image: url("img/background.png");
+            background-size: 100% auto;
+        }
+
+        .graph-data {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+        }
+
+        .graph-data > div {
+            width: 45%;
+            padding: 50px 0;
+
+        }
+
+        #coordinates {
+            text-align: center;
+            color: #00FF00;
+        }
+
+
+        button {
+            align-items: center;
+            background-color: #FFFFFF;
+            border: 1px solid rgba(0, 0, 0, 0.1);
+            border-radius: .25rem;
+            box-shadow: rgba(0, 0, 0, 0.02) 0 1px 3px 0;
+            box-sizing: border-box;
+            color: rgba(0, 0, 0, 0.85);
+            cursor: pointer;
+            display: inline-flex;
+            font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 16px;
+            font-weight: 600;
+            justify-content: center;
+            line-height: 1.25;
+            margin: 0;
+            min-height: 3rem;
+            padding: calc(.875rem - 1px) calc(1.5rem - 1px);
+            position: relative;
+            text-decoration: none;
+            transition: all 250ms;
+            user-select: none;
+            -webkit-user-select: none;
+            touch-action: manipulation;
+            vertical-align: baseline;
+            width: auto;
+        }
+
+        button:hover,
+        button:focus {
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.1) 0 4px 12px;
+            color: rgba(0, 0, 0, 0.65);
+        }
+
+        button:hover {
+            transform: translateY(-1px);
+        }
+
+        button:active {
+            background-color: #F0F0F1;
+            border-color: rgba(0, 0, 0, 0.15);
+            box-shadow: rgba(0, 0, 0, 0.06) 0 2px 4px;
+            color: rgba(0, 0, 0, 0.65);
+            transform: translateY(0);
+        }
+        footer {
+            padding: 20px 0;
+        }
+
+        .vt {
+            width: 40px;
+            height: auto;
+        }
+
+    </style>
+</head>
+<body>
+
+<!-- header -->
+<header class="meme">
+    <h1>Веб-программирование, Лабораторная работа №1, Вариант 184</h1>
+    <h2>
+        <a href="https://github.com/petrovviacheslav">
+            Петров Вячеслав Маркович, P3208
+        </a>
+    </h2>
+</header>
+
+<div class="main">
+    <!-- main block -->
+    <div class="graph-data">
+        <div>
+            <svg height="300" width="300" xmlns="http://www.w3.org/2000/svg">
+
+
+                <!-- lines -->
+                <line stroke="#FF00FF" x1="0" x2="300" y1="150" y2="150"></line>
+                <line stroke="#FF00FF" x1="150" x2="150" y1="0" y2="300"></line>
+                <polygon fill="#FF00FF" points="150,0 144,15 156,15" stroke="#FF00FF"></polygon>
+                <polygon fill="#FF00FF" points="300,150 285,156 285,144" stroke="#FF00FF"></polygon>
+
+                <!-- lines on lines -->
+                <line stroke="#FF00FF" x1="200" x2="200" y1="155" y2="145"></line>
+                <line stroke="#FF00FF" x1="250" x2="250" y1="155" y2="145"></line>
+
+                <line stroke="#FF00FF" x1="50" x2="50" y1="155" y2="145"></line>
+                <line stroke="#FF00FF" x1="100" x2="100" y1="155" y2="145"></line>
+
+                <line stroke="#FF00FF" x1="145" x2="155" y1="100" y2="100"></line>
+                <line stroke="#FF00FF" x1="145" x2="155" y1="50" y2="50"></line>
+
+                <line stroke="#FF00FF" x1="145" x2="155" y1="200" y2="200"></line>
+                <line stroke="#FF00FF" x1="145" x2="155" y1="250" y2="250"></line>
+
+                <!-- Rs and X, Y -->
+                <text fill="#FF00FF" x="195" y="140">R/2</text>
+                <text fill="#FF00FF" x="250" y="140">R</text>
+
+                <text fill="#FF00FF" x="40" y="140">-R</text>
+                <text fill="#FF00FF" x="85" y="140">-R/2</text>
+
+                <text fill="#FF00FF" x="160" y="55">R</text>
+                <text fill="#FF00FF" x="160" y="105">R/2</text>
+
+                <text fill="#FF00FF" x="160" y="204">-R/2</text>
+                <text fill="#FF00FF" x="160" y="255">-R</text>
+
+                <text fill="#FF00FF" x="285" y="140">X</text>
+                <text fill="#FF00FF" x="160" y="15">Y</text>
+
+                <!-- dot -->
+                <circle id="point" r="4" cx="150" cy="150" fill="#FF00FF" stroke="white" visibility="hidden"/>
+
+                <polygon points="150,150 50,150 150,100" fill-opacity="0.4" stroke="navy" fill="blue"></polygon>
+
+                <rect x="50" y="150" width="100" height="100" fill-opacity="0.4" stroke="navy" fill="blue"></rect>
+
+                <path d="M 150 150 L 150 100 A50,50 0 0,1 200,150 Z" fill-opacity="0.4" stroke="navy" fill="blue"></path>
+
+            </svg>
+        </div>
+
+        <div>
+            <form id="coordinates">
+                <div id="X" class="X-radio">
+                    Выбери X:
+                    <label>
+                        <input type="radio" name="x-parameter" value="-3" required>-3
+                    </label>
+                    <label>
+                        <input type="radio" name="x-parameter" value="-2" required>-2
+                    </label>
+                    <label>
+                        <input type="radio" name="x-parameter" value="-1" required>-1
+                    </label>
+                    <label>
+                        <input type="radio" name="x-parameter" value="0" required>0
+                    </label>
+                    <label>
+                        <input type="radio" name="x-parameter" value="1" required>1
+                    </label>
+                    <label>
+                        <input type="radio" name="x-parameter" value="2" required>2
+                    </label>
+                    <label>
+                        <input type="radio" name="x-parameter" value="3" required>3
+                    </label>
+                    <label>
+                        <input type="radio" name="x-parameter" value="4" required>4
+                    </label>
+                    <label>
+                        <input type="radio" name="x-parameter" value="5" required>5
+                    </label>
+                </div>
+                <div class="Y-text" id="Y">
+                    <label>
+                        Впиши Y:
+                        <input id="Y-text" class="Y-text-input" type="number" name="y-parameter" min="-3" max="5" placeholder="[-3; 5]"
+                               maxlength="14" required/>
+                    </label>
+                </div>
+
+                <div class="R-radio" id="R">
+                    Выбери R:
+                    <label>
+                        <input type="radio" name="r-parameter" value="1" required>1
+                    </label>
+                    <label>
+                        <input type="radio" name="r-parameter" value="2" required>2
+                    </label>
+                    <label>
+                        <input type="radio" name="r-parameter" value="3" required>3
+                    </label>
+                    <label>
+                        <input type="radio" name="r-parameter" value="4" required>4
+                    </label>
+                    <label>
+                        <input type="radio" name="r-parameter" value="5" required>5
+                    </label>
+                </div>
+                <button id="submit" type="submit">Отправить</button>
+                <button id="clear" type="reset">Очистить таблицу</button>
+            </form>
+        </div>
+    </div>
+
+    <!-- check table -->
+    <table id="check" class="table-check">
+        <tr class="table-header">
+            <th scope="col">X</th>
+            <th scope="col">Y</th>
+            <th scope="col">R</th>
+            <th scope="col">Попал?</th>
+            <th scope="col">Дата</th>
+            <th scope="col">Время работы скрипта, милисек</th>
+        </tr>
+    </table>
+
+</div>
+<!-- footer -->
+<footer>
+    <div>
+        <a href="https://se.ifmo.ru">
+            <img class="vt" src="img/favicon.jpg" alt="">
+        </a>
+    </div>
+    <small>
+        Проект доступен с открытым исходным кодом на условиях Лицензии CC BY-NC-SA 4.0. Авторские права 2024 Петров
+        Вячеслав
+    </small>
+</footer>
+<script>
+    const table = document.getElementById("check")
+
+    let sessionStorageSize = window.sessionStorage.length
+    for (let i = 1; i <= sessionStorageSize; i++) {
+        let jsonData = window.sessionStorage.getItem(i.toString())
+
+        let data = jsonData.split(",")
+        let newRow = table.insertRow(1);
+        const rowX = newRow.insertCell(0);
+        const rowY = newRow.insertCell(1);
+        const rowR = newRow.insertCell(2);
+        const rowResult = newRow.insertCell(3);
+        const rowNow = newRow.insertCell(4);
+        const rowTime = newRow.insertCell(5);
+
+        rowX.textContent = data[0];
+        rowY.textContent = data[1];
+        rowR.textContent = data[2];
+        rowResult.textContent = data[3]
+        rowNow.textContent = data[4]
+        rowTime.textContent = data[5]
+        if (data[3] === "Да") newRow.className = "hit"
+        else newRow.className = "miss"
+    }
+
+
+    $("#submit").on("click", function (e) {
+        e.preventDefault();
+        let now = new Date();
+        let month = ["января", "февраля", "марта", "апреля", "мая", "июня", "июля", "августа", "сентября", "октября", "ноября", "декабря"]
+
+        let data = {
+            "x": $("input[name='x-parameter']:checked").val(),
+            "y": $("input[name='y-parameter']").val(),
+            "r": $("input[name='r-parameter']:checked").val()
+        }
+        if (isNaN(+data.x) || isNaN(+data.y) || isNaN(+data.r) || +data.y < -3 || +data.y > 5) {
+            alert("Некорректные данные");
+            return;
+        }
+        //const newRow = $("#check").insertRow(-1);
+
+        $.ajax({
+            url: "/fcgi-bin/app.jar?" + $.param(data),
+            type: "POST",
+            dataType: "json",
+            success: function (response) {
+
+                if (response.error != null) {
+                    alert("Ответ от сервера не получен");
+                    console.log(response);
+                } else {
+                    let newRow = table.insertRow(1);
+                    const rowX = newRow.insertCell(0);
+                    const rowY = newRow.insertCell(1);
+                    const rowR = newRow.insertCell(2);
+                    const rowResult = newRow.insertCell(3);
+                    const rowNow = newRow.insertCell(4);
+                    const rowTime = newRow.insertCell(5);
+
+                    rowX.textContent = data.x;
+                    rowY.textContent = data.y;
+                    rowR.textContent = data.r;
+                    if (response.result) {
+                        rowResult.textContent = "Да"
+                        newRow.className = "hit"
+                    } else {
+                        rowResult.textContent = "Нет"
+                        newRow.className = "miss"
+                    }
+                    if (now.getSeconds() < 10) rowNow.textContent = now.getHours().toString() + ":" + now.getMinutes().toString() + ":0" + now.getSeconds().toString() + " " + now.getDate() + " " + month[now.getMonth()] + " " + now.getFullYear()
+                    else rowNow.textContent = now.getHours().toString() + ":" + now.getMinutes().toString() + ":" + now.getSeconds().toString() + " " + now.getDate() + " " + month[now.getMonth()] + " " + now.getFullYear()
+                    rowTime.textContent = response.time
+                    sessionStorageSize++
+                    window.sessionStorage.setItem(sessionStorageSize.toString(), [rowX.textContent, rowY.textContent, rowR.textContent, rowResult.textContent, rowNow.textContent, rowTime.textContent]);
+                }
+            },
+            error: function (xhr, status, error) {
+                alert(error + "error!!!")
+            }
+        });
+    })
+
+    $("#clear").on("click", function (e) {
+        e.preventDefault();
+        $("#check tr:not(:first)").remove();
+        sessionStorageSize = -1
+        window.sessionStorage.clear()
+    })
+</script>
+</body>
+</html>
