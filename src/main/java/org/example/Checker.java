@@ -44,7 +44,7 @@ public class Checker {
 
     private boolean quarter4() {
         if (x < 0 && y >= 0) {
-            return (this.y >= (double) this.r / 2 + 0.5 * this.x);
+            return (this.y <= (double) this.r / 2 + 0.5 * this.x);
         }
         return false;
     }

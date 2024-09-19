@@ -21,7 +21,9 @@
 
         header a {
             text-decoration: none;
+            color: cornsilk;
         }
+
         header a:hover {
             text-decoration: underline;
             scale: 1.2;
@@ -93,16 +95,13 @@
             color: rgba(0, 0, 0, 0.85);
             cursor: pointer;
             display: inline-flex;
-            font-family: system-ui, -apple-system, system-ui, "Helvetica Neue", Helvetica, Arial, sans-serif;
             font-size: 16px;
             font-weight: 600;
             justify-content: center;
             line-height: 1.25;
             margin: 0;
             min-height: 3rem;
-            padding: calc(.875rem - 1px) calc(1.5rem - 1px);
-            position: relative;
-            text-decoration: none;
+            padding: 5px;
             transition: all 250ms;
             user-select: none;
             -webkit-user-select: none;
@@ -129,6 +128,7 @@
             color: rgba(0, 0, 0, 0.65);
             transform: translateY(0);
         }
+
         footer {
             padding: 20px 0;
         }
@@ -136,6 +136,10 @@
         .vt {
             width: 40px;
             height: auto;
+        }
+        .vt:hover {
+            transition: .3s;
+            scale: 1.3;
         }
 
     </style>
@@ -166,42 +170,59 @@
                 <polygon fill="#FF00FF" points="300,150 285,156 285,144" stroke="#FF00FF"></polygon>
 
                 <!-- lines on lines -->
-                <line stroke="#FF00FF" x1="200" x2="200" y1="155" y2="145"></line>
-                <line stroke="#FF00FF" x1="250" x2="250" y1="155" y2="145"></line>
+                <line stroke="#FF00FF" x1="180" x2="180" y1="155" y2="145"></line>
+                <line stroke="#FF00FF" x1="210" x2="210" y1="155" y2="145"></line>
+                <line stroke="#FF00FF" x1="240" x2="240" y1="155" y2="145"></line>
+                <line stroke="#FF00FF" x1="270" x2="270" y1="155" y2="145"></line>
 
-                <line stroke="#FF00FF" x1="50" x2="50" y1="155" y2="145"></line>
-                <line stroke="#FF00FF" x1="100" x2="100" y1="155" y2="145"></line>
+                <line stroke="#FF00FF" x1="30" x2="30" y1="155" y2="145"></line>
+                <line stroke="#FF00FF" x1="60" x2="60" y1="155" y2="145"></line>
+                <line stroke="#FF00FF" x1="90" x2="90" y1="155" y2="145"></line>
+                <line stroke="#FF00FF" x1="120" x2="120" y1="155" y2="145"></line>
 
-                <line stroke="#FF00FF" x1="145" x2="155" y1="100" y2="100"></line>
-                <line stroke="#FF00FF" x1="145" x2="155" y1="50" y2="50"></line>
+                <line stroke="#FF00FF" x1="145" x2="155" y1="120" y2="120"></line>
+                <line stroke="#FF00FF" x1="145" x2="155" y1="90" y2="90"></line>
+                <line stroke="#FF00FF" x1="145" x2="155" y1="60" y2="60"></line>
+                <line stroke="#FF00FF" x1="145" x2="155" y1="30" y2="30"></line>
 
-                <line stroke="#FF00FF" x1="145" x2="155" y1="200" y2="200"></line>
-                <line stroke="#FF00FF" x1="145" x2="155" y1="250" y2="250"></line>
+                <line stroke="#FF00FF" x1="145" x2="155" y1="180" y2="180"></line>
+                <line stroke="#FF00FF" x1="145" x2="155" y1="210" y2="210"></line>
+                <line stroke="#FF00FF" x1="145" x2="155" y1="240" y2="240"></line>
+                <line stroke="#FF00FF" x1="145" x2="155" y1="270" y2="270"></line>
 
                 <!-- Rs and X, Y -->
-                <text fill="#FF00FF" x="195" y="140">R/2</text>
-                <text fill="#FF00FF" x="250" y="140">R</text>
+                <text fill="#FF00FF" x="170" y="140">R/2</text>
+                <text fill="#FF00FF" x="205" y="140">R</text>
+                <text fill="#FF00FF" x="225" y="140">3R/2</text>
+                <text fill="#FF00FF" x="260" y="140">2R</text>
 
-                <text fill="#FF00FF" x="40" y="140">-R</text>
-                <text fill="#FF00FF" x="85" y="140">-R/2</text>
+                <text fill="#FF00FF" x="14" y="140">-2R</text>
+                <text fill="#FF00FF" x="40" y="140">-3R/2</text>
+                <text fill="#FF00FF" x="82" y="140">-R</text>
+                <text fill="#FF00FF" x="107" y="140">-R/2</text>
 
-                <text fill="#FF00FF" x="160" y="55">R</text>
-                <text fill="#FF00FF" x="160" y="105">R/2</text>
+                <text fill="#FF00FF" x="160" y="35">2R</text>
+                <text fill="#FF00FF" x="160" y="65">3R/2</text>
+                <text fill="#FF00FF" x="160" y="95">R</text>
+                <text fill="#FF00FF" x="160" y="125">R/2</text>
 
-                <text fill="#FF00FF" x="160" y="204">-R/2</text>
-                <text fill="#FF00FF" x="160" y="255">-R</text>
+                <text fill="#FF00FF" x="160" y="183">-R/2</text>
+                <text fill="#FF00FF" x="160" y="213">-R</text>
+                <text fill="#FF00FF" x="160" y="243">-3R/2</text>
+                <text fill="#FF00FF" x="160" y="273">-2R</text>
 
                 <text fill="#FF00FF" x="285" y="140">X</text>
                 <text fill="#FF00FF" x="160" y="15">Y</text>
 
                 <!-- dot -->
-                <circle id="point" r="4" cx="150" cy="150" fill="#FF00FF" stroke="white" visibility="hidden"/>
+                <circle id="point" cx="150" cy="150" r="4" fill="red" stroke="white" visibility="hidden"/>
 
-                <polygon points="150,150 50,150 150,100" fill-opacity="0.4" stroke="navy" fill="blue"></polygon>
+                <polygon points="150,150 90,150 150,120" fill-opacity="0.4" stroke="navy" fill="blue"></polygon>
 
-                <rect x="50" y="150" width="100" height="100" fill-opacity="0.4" stroke="navy" fill="blue"></rect>
+                <rect x="90" y="150" width="60" height="60" fill-opacity="0.4" stroke="navy" fill="blue"></rect>
 
-                <path d="M 150 150 L 150 100 A50,50 0 0,1 200,150 Z" fill-opacity="0.4" stroke="navy" fill="blue"></path>
+                <path d="M 150 150 L 150 120 A50,50 0 0,1 180,150 Z" fill-opacity="0.4" stroke="navy"
+                      fill="blue"></path>
 
             </svg>
         </div>
@@ -241,7 +262,8 @@
                 <div class="Y-text" id="Y">
                     <label>
                         Впиши Y:
-                        <input id="Y-text" class="Y-text-input" type="number" name="y-parameter" min="-3" max="5" placeholder="[-3; 5]"
+                        <input id="Y-text" class="Y-text-input" type="number" name="y-parameter" min="-3" max="5"
+                               placeholder="[-3; 5]"
                                maxlength="14" required/>
                     </label>
                 </div>
@@ -385,6 +407,34 @@
         sessionStorageSize = -1
         window.sessionStorage.clear()
     })
+
+    $("#Y-text").on("change", pointing)
+
+    $('input[type=radio][name=x-parameter]').change(pointing)
+
+    $('input[type=radio][name=r-parameter]').change(pointing)
+
+    function pointing(){
+        const svgCenterX = 150;
+        const svgCenterY = 150;
+
+        const x = $("input[name='x-parameter']:checked").val()
+        const y = $("input[name='y-parameter']").val()
+        const r = $("input[name='r-parameter']:checked").val()
+
+        if (!isNaN(+x) && !isNaN(+y) && !isNaN(+r) && +y >= -3 && +y <= 5) {
+
+            const coordinateX = svgCenterX + x / r * 60;
+            const coordinateY = svgCenterY - y / r * 60;
+
+            let pointElement = document.getElementById('point');
+
+            pointElement.setAttribute('cx', "" + coordinateX)
+            pointElement.setAttribute('cy', "" + coordinateY)
+            pointElement.setAttribute('visibility', 'visible')
+        }
+    }
+
 </script>
 </body>
 </html>

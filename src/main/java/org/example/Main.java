@@ -11,14 +11,6 @@ import java.util.HashMap;
 import com.fastcgi.*;
 
 public class Main {
-
-    private static final String SUCCESS_RESPONSE = """
-            HTTP/1.1 200 OK
-            """;
-    private static final String FAIL_RESPONSE = """
-            HTTP/1.1 400 Bad Request
-            """;
-
     private static final String BASE_RESPONSE = """
             Access-Control-Allow-Origin: *
             Connection: keep-alive
@@ -42,10 +34,8 @@ public class Main {
             if (check.validate()) {
                 long time = new Date().getTime() - nowDate.getTime();
                 response = createJson(BASE_RESPONSE, String.format("{\"result\": %b, \"time\": %d}", check.isHit(), time));
-//                System.out.println((new Date()).getTime() - nowDate.getTime());
             } else {
                 response = createJson(BASE_RESPONSE, "{\"error\": \" incorrect data\"}");
-//                System.out.println((new Date()).getTime() - nowDate.getTime());
             }
 
             System.out.println(response);
