@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Лаба1 хз что придумать</title>
+    <title>Лаба1 супер дупер классная</title>
     <script src="jquery-3.7.1.min.js"></script>
 
     <style>
@@ -108,6 +108,27 @@
             touch-action: manipulation;
             vertical-align: baseline;
             width: auto;
+        }
+
+        form>div {
+            margin: 20px 0;
+        }
+
+        input[type="number"] {
+            padding: 5px;
+
+            -moz-appearance: textfield;
+            -webkit-appearance: textfield;
+            appearance: textfield;
+        }
+
+        input[type="number"]::-webkit-outer-spin-button,
+        input[type="number"]::-webkit-inner-spin-button {
+            display: none;
+        }
+
+        input[type="number"]:focus {
+            outline: 2px solid blue;
         }
 
         button:hover,
@@ -362,7 +383,7 @@
 
         $.ajax({
             url: "/fcgi-bin/app.jar?" + $.param(data),
-            type: "POST",
+            type: "GET",
             dataType: "json",
             success: function (response) {
 
@@ -395,8 +416,8 @@
                     window.sessionStorage.setItem(sessionStorageSize.toString(), [rowX.textContent, rowY.textContent, rowR.textContent, rowResult.textContent, rowNow.textContent, rowTime.textContent]);
                 }
             },
-            error: function (xhr, status, error) {
-                alert(error + "error!!!")
+            error: function (jqXHR, textStatus, errorThrown) {
+                console.error("Ошибка:", textStatus, errorThrown);
             }
         });
     })
