@@ -1,7 +1,6 @@
 package org.example;
 
 import java.nio.charset.StandardCharsets;
-import java.util.Date;
 import java.util.HashMap;
 
 import com.fastcgi.*;
@@ -20,7 +19,9 @@ public class Main {
         FCGIInterface fcgi = new FCGIInterface();
 
         while (fcgi.FCGIaccept() >= 0) {
-            Date nowDate = new Date();
+
+            long startTime = System.nanoTime();
+
             HashMap<String, String> params = parse(FCGIInterface.request.params.getProperty("QUERY_STRING"));
 
             Checker check = new Checker(params);
@@ -28,22 +29,23 @@ public class Main {
             String response;
 
             if (check.validate()) {
-                long time = new Date().getTime() - nowDate.getTime();
-                response = createJson(BASE_RESPONSE, String.format("{\"result\": %b, \"time\": %d}", check.isHit(), time));
+                long endTime = System.nanoTime();
+                long elapsedTime = (endTime - startTime)/1000;
+                response = createJson(String.format("{\"result\": %b, \"time\": %d}", check.isHit(), elapsedTime));
             } else {
-                response = createJson(BASE_RESPONSE, "{\"error\": \" incorrect data\"}");
+                response = createJson("{\"error\": \" incorrect data\"}");
             }
 
             System.out.println(response);
         }
     }
 
-    private static String createJson(String type, String answer) {
-        return String.format(type, answer.getBytes(StandardCharsets.UTF_8).length, answer);
+    private static String createJson(String answer) {
+        return String.format(BASE_RESPONSE, answer.getBytes(StandardCharsets.UTF_8).length, answer);
     }
 
     private static HashMap<String, String> parse(String jsonStr) {
-        HashMap<String, String> params = new HashMap<String, String>();
+        HashMap<String, String> params = new HashMap<>();
         String[] pairs = jsonStr.split("&");
         for (String pair : pairs) {
 

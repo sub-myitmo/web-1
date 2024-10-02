@@ -2,7 +2,7 @@
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
-    <title>Лаба1 супер дупер классная</title>
+    <title>Лабораторная1 супер дупер классная</title>
     <script src="jquery-3.7.1.min.js"></script>
 
     <style>
@@ -185,16 +185,16 @@
 
 
                 <!-- lines -->
-                <line stroke="#FF00FF" x1="0" x2="300" y1="150" y2="150"></line>
-                <line stroke="#FF00FF" x1="150" x2="150" y1="0" y2="300"></line>
-                <polygon fill="#FF00FF" points="150,0 144,15 156,15" stroke="#FF00FF"></polygon>
-                <polygon fill="#FF00FF" points="300,150 285,156 285,144" stroke="#FF00FF"></polygon>
+                <line stroke="black" x1="0" x2="300" y1="150" y2="150"></line>
+                <line stroke="black" x1="150" x2="150" y1="0" y2="300"></line>
+                <polygon fill="black" points="150,0 144,15 156,15" stroke="#FF00FF"></polygon>
+                <polygon fill="black" points="300,150 285,156 285,144" stroke="#FF00FF"></polygon>
 
                 <!-- lines on lines -->
-                <line stroke="#FF00FF" x1="180" x2="180" y1="155" y2="145"></line>
-                <line stroke="#FF00FF" x1="210" x2="210" y1="155" y2="145"></line>
-                <line stroke="#FF00FF" x1="240" x2="240" y1="155" y2="145"></line>
-                <line stroke="#FF00FF" x1="270" x2="270" y1="155" y2="145"></line>
+                <line stroke="black" x1="180" x2="180" y1="155" y2="145"></line>
+                <line stroke="black" x1="210" x2="210" y1="155" y2="145"></line>
+                <line stroke="black" x1="240" x2="240" y1="155" y2="145"></line>
+                <line stroke="black" x1="270" x2="270" y1="155" y2="145"></line>
 
                 <line stroke="#FF00FF" x1="30" x2="30" y1="155" y2="145"></line>
                 <line stroke="#FF00FF" x1="60" x2="60" y1="155" y2="145"></line>
@@ -321,7 +321,7 @@
             <th scope="col">R</th>
             <th scope="col">Попал?</th>
             <th scope="col">Дата</th>
-            <th scope="col">Время работы скрипта, милисек</th>
+            <th scope="col">Время работы скрипта, микросек</th>
         </tr>
     </table>
 
@@ -344,8 +344,7 @@
     let sessionStorageSize = window.sessionStorage.length
     for (let i = 1; i <= sessionStorageSize; i++) {
         let jsonData = window.sessionStorage.getItem(i.toString())
-
-        let data = jsonData.split(",")
+        let data = jsonData.split(", ")
         let newRow = table.insertRow(1);
         const rowX = newRow.insertCell(0);
         const rowY = newRow.insertCell(1);
@@ -413,7 +412,7 @@
                     else rowNow.textContent = now.getHours().toString() + ":" + now.getMinutes().toString() + ":" + now.getSeconds().toString() + " " + now.getDate() + " " + month[now.getMonth()] + " " + now.getFullYear()
                     rowTime.textContent = response.time
                     sessionStorageSize++
-                    window.sessionStorage.setItem(sessionStorageSize.toString(), [rowX.textContent, rowY.textContent, rowR.textContent, rowResult.textContent, rowNow.textContent, rowTime.textContent]);
+                    window.sessionStorage.setItem(sessionStorageSize.toString(), `${rowX.textContent}, ${rowY.textContent}, ${rowR.textContent}, ${rowResult.textContent}, ${rowNow.textContent}, ${rowTime.textContent}`);
                 }
             },
             error: function (jqXHR, textStatus, errorThrown) {
